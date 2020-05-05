@@ -7,7 +7,6 @@ module.exports = (app) => {
 
     app.get('/terraform/plan/:userId', terraform.plan);
 
-    // Create a new product
     app.post('/terraform/provisioner/:userId', terraform.createProvisioners);
     app.post('/terraform/module/:userId', terraform.createModule);
 
