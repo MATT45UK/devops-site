@@ -105,18 +105,32 @@ module.exports = {
         let userId = req.params.userId
         let dir = `${__dirname}/../../data/${userId}/terraform/`
 
-        exec(`cd ${dir}; terraform plan`, (error, stdout, stderr) => {
+        exec(`cd ${dir}; terraform plan -out ${dir}plan.tfplan`, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
-                res.sendStatus(500)
+                res.status(500).send(error.message)
                 return;
             }
-            if (stderr) {
-                console.log(`stderr: ${stderr}`);
-                res.sendStatus(501)
+            else if (stderr) {
+                console.log(`error: ${stderr}`);
+                res.status(501).send(stderr)
                 return;
             }
-            res.sendStatus(200);
+            else {
+                exec(`cd ${dir}; terraform show -json ${dir}plan.tfplan`, (error, stdout, stderr) => {
+                    if (error) {
+                        console.log(`error: ${error.message}`);
+                        res.send(error.message).status(500)
+                        return;
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        res.status(501).send(stderr)
+                        return;
+                    }
+                    res.send(stdout);
+                });
+            }
         });
     }
 
