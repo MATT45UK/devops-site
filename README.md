@@ -4,21 +4,21 @@ A demo of various technologies by [Matt Bailey (Senior DevOps Engineer)](https:/
 
 ## Run the node api locally
 
-###Install dependecies:
+### Install dependecies:
 `npm install`
 
-###Run local server:
+### Run local server:
 `node src/`
 
-###Preinitialisation:
+### Preinitialisation:
 Creates settings for a user 1234.
 `PUT` to `localhost:3001/terraform/preinit/1234`
 
-###Setup your backend:
+### Setup your backend:
 Created a backend configuration for user 1234.
 `PUT` to `localhost:3001/terraform/backend/1234`
 
-###Setup Provisioners:
+### Setup Provisioners:
 Sets up provisioners for user 1234.
 `POST` to `localhost:3001/terraform/provisioner/1234`
 
@@ -33,7 +33,7 @@ Body:
 }
 ```
 
-###Create first module:
+### Create first module:
 This example creates a VPC using a terraform registry module for user 1234.
 
 `POST` to `localhost:3001/terraform/module/1234`
@@ -57,14 +57,14 @@ Body:
     }
 }
 ```
-###Initialise terraform 
+### Initialise terraform 
 This will download modules/providers needed to run terraform for user 1234.
 
 `PUT` to `localhost:3001/terraform/init/1234`
 
 
 
-###Run a terraform plan
+### Run a terraform plan
 This will plan a build based on all modules currently created.
 
 `GET` to `localhost:3001/terraform/plan/1234`
