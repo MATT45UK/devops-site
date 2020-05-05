@@ -18,7 +18,6 @@ module.exports = {
         access_key = "${provisionerSettings.accessKey}"
         secret_key = "${provisionerSettings.secretKey}"
         region     = "${provisionerSettings.region}"
-        version    = "2.47.0"
     }
     `
         helpers.writeFile(`${__dirname}/../../data/${userId}/terraform/provisioner.tf`, provisioner, (err, data) => {
