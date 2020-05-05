@@ -33,7 +33,6 @@ module.exports = {
 
     createBackend: (req, res) => {
         let userId = req.params.userId
-        let { backendSettings } = req.body;
         const config = require('../../config')
         let backend = `
     terraform {
@@ -46,7 +45,14 @@ module.exports = {
         }
     }
     `
-        res.send(backend)
+        helpers.writeFile(`${__dirname}/../../data/${userId}/terraform/backend.tf`, backend, (err, data) => {
+            if (data) {
+                res.send(backend)
+            }
+            else {
+                res.send(err)
+            }
+        });
     },
 
     createModule: (req, res) => {
