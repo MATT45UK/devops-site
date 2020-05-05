@@ -10,6 +10,9 @@ A demo of various technologies by [Matt Bailey (Senior DevOps Engineer)](https:/
 ### Run local server:
 `node src/`
 
+### Configure your config.js
+Copy the config.example.js file to config.js in the same directory and populate with your access keys and an S3 bucket.
+
 ### Preinitialisation:
 Creates settings for a user 1234.
 `PUT` to `localhost:3001/terraform/preinit/1234`
