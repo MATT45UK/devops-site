@@ -30,6 +30,7 @@ app.use(morgan('combined'));
 
 // Load in routes for things
 require('./routes/terraform.routes')(app);
+require('./routes/auth.routes')(app);
 
 app.get('/', (req, res) => {
     res.send({ title: 'DevOps' });
