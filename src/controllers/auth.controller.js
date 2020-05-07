@@ -16,7 +16,7 @@ module.exports = {
         // If our JWT hasn't expired, return 200
         let now = Math.floor(new Date() / 1000)
         if (now < jwt.exp) {
-            res.sendStatus(200);
+            res.send(jwt);
         } else {
             res.sendStatus(401);
         }
